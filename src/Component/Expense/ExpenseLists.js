@@ -20,7 +20,7 @@ const ExpenseLists = React.memo(({expenselists, deleteItem}) => {
     const indexOfLastPost = activePage * itemsCountPerPage;
     const indexOfFirstPost = indexOfLastPost - itemsCountPerPage;
     const currentexpenselists = expenselists.slice(indexOfFirstPost , indexOfLastPost);
-    if(currentexpenselists){
+    if(expenselists.length>0){
         
         return(
             <Fragment>
