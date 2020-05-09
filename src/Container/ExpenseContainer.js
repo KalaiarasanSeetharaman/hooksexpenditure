@@ -26,11 +26,11 @@ import {dataList} from '../Utils/Utils';
 
     const getValuesForSpendIncomeBalance = (expenseList) => {
         const totalspending = expenseList.filter(data => data.type === 'spend').reduce((acc, val) => {
-          return acc + val.amount;
+          return acc + parseInt(val.amount);
         }, 0);
         setTotalSpending(totalspending);
         const totalincome = expenseList.filter(data => data.type === 'income').reduce((acc, val) => {
-            return acc + val.amount;
+            return acc + parseInt(val.amount);
           }, 0);
         setTotalIncome(totalincome);
         const balance = totalincome - totalspending;
@@ -64,6 +64,7 @@ import {dataList} from '../Utils/Utils';
             payload
           ]
           localStorage.setItem('expenseList', JSON.stringify(updatedlists));
+          getValuesForSpendIncomeBalance(updatedlists);
           return updatedlists
       } );
       setShowIncomeModal(false);
@@ -75,6 +76,7 @@ import {dataList} from '../Utils/Utils';
         let newlists = [...lists];
         let updatedexpense = newlists.filter((data)=>data.id!==itemindex);
         localStorage.setItem('expenseList', JSON.stringify(updatedexpense));
+        getValuesForSpendIncomeBalance(updatedexpense);
         return updatedexpense
         }
       );
